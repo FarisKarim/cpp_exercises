@@ -22,7 +22,7 @@
 // }
 
 // #include <cstdint> // for fixed-width integers
-#include <iostream>
+// #include <iostream>
 
 // int main()
 // {
@@ -50,13 +50,11 @@
 //     return 0;
 // }
 
-#include <iostream>
-
 // returns true if x and y are equal, false otherwise
-bool isEqual(int x, int y)
-{
-    return x == y; // operator== returns true if x equals y, and false otherwise
-}
+// bool isEqual(int x, int y)
+// {
+//     return x == y; // operator== returns true if x equals y, and false otherwise
+// }
 
 // int main()
 // {
@@ -112,8 +110,6 @@ bool isEqual(int x, int y)
 //         std::cout << "The digit is not prime" << ".\n";
 // }
 
-
-
 // bool isAllowedToTakeFunRide()
 // {
 //     std::cout << "How tall are you? (cm)\n";
@@ -136,9 +132,6 @@ bool isEqual(int x, int y)
 //     return 0;
 // }
 
-
-
-
 // EXTRACTING SPACES FROM BUFFER
 // int main()
 // {
@@ -154,7 +147,6 @@ bool isEqual(int x, int y)
 //     return 0;
 // }
 
-
 // explicit type conversion
 // void print(int x)
 // {
@@ -167,3 +159,55 @@ bool isEqual(int x, int y)
 
 // 	return 0;
 // }
+
+// char getValue()
+// {
+//     std::cout << "Enter a single character: ";
+//     char input {};
+//     std::cin >> input;
+//     return input;
+// }
+// int main()
+// {
+//     char ch {getValue()};
+//     std::cout << "You entered '" << ch << "', which has ASCII code " << static_cast<int>(ch) << ".\n";
+//     return 0;
+// }
+
+// CHAPTER 4 SUMMARY QUIZ QUESTION 2
+// Write the following program: The user is asked to enter 2 floating point numbers (use doubles).
+//  The user is then asked to enter one of the following mathematical symbols: +, -, *, or /. 
+// The program computes the answer on the two numbers the user entered and prints the results. 
+// If the user enters an invalid symbol, the program should print nothing.
+
+double getValue()
+{
+    std::cout << "Enter a double value: ";
+    double val {};
+    std::cin >> val;
+    return val;
+}
+
+int main()
+{
+    double first {getValue()};
+    double second {getValue()};
+
+    std::cout << "Enter +, -, *, or /: ";
+    char op {};
+    std::cin >> op;
+    double result {};
+    if (op == '+')
+        result = first + second;
+    else if (op == '-')
+        result = first - second;
+    else if (op == '*')
+        result = first * second;
+    else if (op == '/')
+        result = first / second;
+    else
+        return 0;
+    
+    std::cout << first << " " << op << " " << second << " is " << result << '\n';
+}
+
