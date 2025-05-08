@@ -1,0 +1,6 @@
+# Ignore macOS system files
+.DS_Store
+*.dSYM/
+cpp_version
+helloworld
+.vscode/
