@@ -59,35 +59,80 @@
 
 // 8.8 QUIZ
 // Loop between 5 and 1
-// int main()
-// {
-//     int outer{5};
-//     while (outer >= 1)
-//     {
-//         int inner = {outer};
-//         while (inner >= 1)
-//         {
-//             std::cout << inner << ' ';
-//             --inner;
+// int main () {
+//     int outer {5};
+//     while (outer >= 1) {
+//         int inner {outer};
+//         while (inner >= 1) {
+//         std::cout << inner << ' ';
+//         --inner;
 //         }
 //         std::cout << '\n';
-//         --outer;
+//          --outer;
 //     }
-//     return 0;
 // }
 
-// int main() {
+// int main () {
 //     int outer {1};
 //     while (outer <= 5) {
 //         int inner {5};
 //         while (inner >= 1) {
-//             if (inner <= outer)
+//             if (outer >= inner) {
 //                 std::cout << inner << ' ';
-//             else
+//             }
+//             else {
 //                 std::cout << "  ";
+//             }
 //             --inner;
 //         }
 //         std::cout << '\n';
 //         ++outer;
 //     }
 // }
+
+// 8.10 QUIZ
+// int main() {
+//     for (int i{0}; i < 21; i += 2) {
+//         std::cout << i << " ";
+//     }
+//     std::cout << '\n';
+// }
+
+// int sumTo(int x) {
+//     int sum {0};
+//     for (int i {1}; i <=x; ++i) {
+//         sum += i;
+//     }
+//     return sum;
+// }
+
+// int main() {
+//     std::cout << "Enter a positive number: ";
+//     int num {};
+//     std::cin >> num;
+//     std::cout << "The sum is " << sumTo(num) << '\n';
+// }
+
+void fizzbuzz(int x)
+{
+    for (int i {1}; i <= x; ++i)
+    {
+        if ((i % 3 == 0) && (i % 5 == 0))
+            std::cout << "fizzbuzz";
+        else if (i % 5 == 0)
+            std::cout << "buzz";
+        else if (i % 3 == 0)
+            std::cout << "fizz";
+        else
+            std::cout << i;
+        std::cout << '\n';
+    }
+}
+int main()
+{
+    std::cout << "Enter a positive number: ";
+    int num{};
+    std::cin >> num;
+    fizzbuzz(num);
+    return 0;
+}
