@@ -53,29 +53,29 @@
 
 
 // 12.5
-#include <iostream>
-#include <string>
+// #include <iostream>
+// #include <string>
 
-void printValue(std::string& y) // type changed to std::string&
-{
-    std::cout << y << '\n';
-} // y is destroyed here
+// void printValue(std::string& y) // type changed to std::string&
+// {
+//     std::cout << y << '\n';
+// } // y is destroyed here
 
-int main()
-{
-    std::string x { "Hello, world!" };
+// int main()
+// {
+//     std::string x { "Hello, world!" };
 
-    printValue(x); // x is now passed by reference into reference parameter y (inexpensive)
+//     printValue(x); // x is now passed by reference into reference parameter y (inexpensive)
 
-    return 0;
-}
+//     return 0;
+// }
 
-#include <iostream>
+// #include <iostream>
 
-void printValue(int& y) // y only accepts modifiable lvalues
-{
-    std::cout << y << '\n';
-}
+// void printValue(int& y) // y only accepts modifiable lvalues
+// {
+//     std::cout << y << '\n';
+// }
 
 // int main()
 // {
@@ -127,25 +127,64 @@ void printValue(int& y) // y only accepts modifiable lvalues
 //     return 0;
 // }
 
-#include <iostream>
-#include <string>
+// #include <iostream>
+// #include <string>
 
-void printByValue(std::string val) // The function parameter is a copy of str
-{
-    std::cout << val << '\n'; // print the value via the copy
+// void printByValue(std::string val) // The function parameter is a copy of str
+// {
+//     std::cout << val << '\n'; // print the value via the copy
+// }
+
+// void printByReference(const std::string& ref) // The function parameter is a reference that binds to str
+// {
+//     std::cout << ref << '\n'; // print the value via the reference
+// }
+
+// int main()
+// {
+//     std::string str{ "Hello, world!" };
+
+//     printByValue(str); // pass str by value, makes a copy of str
+//     printByReference(str); // pass str by reference, does not make a copy of str
+
+//     return 0;
+// }
+
+// #include <iostream>
+
+// int main()
+// {
+// 	int x{ 4 };
+// 	int y{ 6 };
+
+// 	int& ref{ x };
+// 	++ref;
+// 	ref = y;
+// 	++ref;
+
+// 	std::cout << x << ' ' << y;
+
+// 	return 0;
+// }
+
+// If you’re passing x and y by value, the function is swapping its own copies, not your originals.
+//  After sort2(x,y) returns, the caller’s x and y are unchanged.
+void sort2(int& x, int &y) {
+    if (y < x)
+        std::swap(x, y);
 }
-
-void printByReference(const std::string& ref) // The function parameter is a reference that binds to str
-{
-    std::cout << ref << '\n'; // print the value via the reference
-}
-
 int main()
 {
-    std::string str{ "Hello, world!" };
+    int x { 7 };
+    int y { 5 };
 
-    printByValue(str); // pass str by value, makes a copy of str
-    printByReference(str); // pass str by reference, does not make a copy of str
+    std::cout << x << ' ' << y << '\n'; // should print 7 5
+
+    sort2(x, y); // make sure sort works when values need to be swapped
+    std::cout << x << ' ' << y << '\n'; // should print 5 7
+
+    sort2(x, y); // make sure sort works when values don't need to be swapped
+    std::cout << x << ' ' << y << '\n'; // should print 5 7
 
     return 0;
 }
