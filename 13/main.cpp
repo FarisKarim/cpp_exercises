@@ -120,53 +120,131 @@
 //     printFraction(multiplyFractions(f1, f2));
 // }
 
+// enum MonsterType {
+//     ogre,
+//     dragon,
+//     orc,
+//     spider,
+//     slime,
+// };
 
-enum MonsterType {
-    ogre,
-    dragon,
-    orc,
-    spider,
-    slime,
+// struct Monster {
+//     MonsterType type {};
+//     std::string name {};
+//     int health {};
+// };
+
+// void printMonster(const Monster& x) {
+//     std::string_view typeName;
+//     switch (x.type) {
+//         case ogre:
+//             typeName = "Ogre";
+//             break;
+//         case dragon:
+//             typeName = "Dragon";
+//             break;
+//         case orc:
+//             typeName = "Orc";
+//             break;
+//         case spider:
+//             typeName = "Giant Spider";
+//             break;
+//         case slime:
+//             typeName = "Slime";
+//             break;
+//         default:
+//             typeName = "Unknown";
+//             break;
+//     };
+
+//     std::cout << "This " << typeName << " is named " << x.name << " and has " << x.health << " health." << '\n';
+// }
+
+// int main() {
+//     Monster m1 {ogre, "Torg", 145};
+//     Monster m2 {slime, "Blurp", 23};
+//     printMonster(m1);
+//     printMonster(m2);
+
+//     return 0;
+// }
+
+// struct Pair
+// {
+//     int first{};
+//     int second{};
+// };
+// #include <iostream>
+
+// template <typename T>
+// struct Pair
+// {
+//     T first{};
+//     T second{};
+// };
+
+// int main()
+// {
+//     Pair<int> p1{ 5, 6 };        // instantiates Pair<int> and creates object p1
+//     std::cout << p1.first << ' ' << p1.second << '\n';
+
+//     Pair<double> p2{ 1.2, 3.4 }; // instantiates Pair<double> and creates object p2
+//     std::cout << p2.first << ' ' << p2.second << '\n';
+
+//     Pair<double> p3{ 7.8, 9.0 }; // creates object p3 using prior definition for Pair<double>
+//     std::cout << p3.first << ' ' << p3.second << '\n';
+
+//     return 0;
+// }
+
+// #include <iostream>
+
+// template <typename T>
+// struct Pair
+// {
+//     T first{};
+//     T second{};
+// };
+
+// template <typename T>
+// constexpr T max(Pair<T> p)
+// {
+//     return (p.first < p.second ? p.second : p.first);
+// }
+
+// int main()
+// {
+//     Pair<int> p1{ 5, 6 };
+//     std::cout << max<int>(p1) << " is larger\n"; // explicit call to max<int>
+
+//     Pair<double> p2{ 1.2, 3.4 };
+//     std::cout << max(p2) << " is larger\n"; // call to max<double> using template argument deduction (prefer this)
+
+//     return 0;
+// }
+
+template <typename T>
+struct Triad {
+    T first {};
+    T second {};
+    T third {};
 };
 
-struct Monster {
-    MonsterType type {};
-    std::string name {};
-    int health {};
-};
+template <typename T>
+Triad(T,T,T) -> Triad<T>;
 
-void printMonster(const Monster& x) {
-    std::string_view typeName;
-    switch (x.type) {
-        case ogre:
-            typeName = "Ogre";
-            break;
-        case dragon:
-            typeName = "Dragon";
-            break;
-        case orc:
-            typeName = "Orc";
-            break;
-        case spider:
-            typeName = "Giant Spider";
-            break;
-        case slime:
-            typeName = "Slime";
-            break;
-        default:
-            typeName = "Unknown";
-            break;
-    };
-
-    std::cout << "This " << typeName << " is named " << x.name << " and has " << x.health << " health." << '\n';
+template <typename T>
+void print(Triad<T>& t ) {
+    std::cout << "[" << t.first << ", " << t.second << ", " << t.third << "]";
 }
 
-int main() {
-    Monster m1 {ogre, "Torg", 145};
-    Monster m2 {slime, "Blurp", 23};
+int main()
+{
+	Triad t1{ 1, 2, 3 }; // note: uses CTAD to deduce template arguments
+	print(t1);
 
-    printMonster(m1);
-    printMonster(m2);
+	Triad t2{ 1.2, 3.4, 5.6 }; // note: uses CTAD to deduce template arguments
+	print(t2);
 
-    return 0;
+	return 0;
 }
