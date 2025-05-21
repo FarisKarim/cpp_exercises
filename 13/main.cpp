@@ -90,33 +90,83 @@
 //     calculateRevenue(carSite);
 // }
 
-struct Fraction {
-    int numerator {};
-    int denominator {1};
+// struct Fraction {
+//     int numerator {};
+//     int denominator {1};
+// };
+
+// Fraction getFraction() {
+//     Fraction frac {};
+//     std::cout << "Enter a value for the numerator: ";
+//     std::cin >> frac.numerator;
+//     std::cout << "Enter a value for the denominator: ";
+//     std::cin >> frac.denominator;
+//     std::cout << '\n';
+
+//     return frac;
+// }
+
+// Fraction multiplyFractions(const Fraction& f1, const Fraction& f2) {
+//     return {f1.numerator * f2.numerator, f1.denominator * f2.denominator};
+// }
+
+// void printFraction(const Fraction& x) {
+//     std::cout << "Your fractions multiplied together: " << x.numerator << "/" << x.denominator << '\n';
+// }
+
+// int main() {
+//     Fraction f1 {getFraction()};
+//     Fraction f2 {getFraction()};
+//     printFraction(multiplyFractions(f1, f2));
+// }
+
+
+enum MonsterType {
+    ogre,
+    dragon,
+    orc,
+    spider,
+    slime,
 };
 
-Fraction getFraction() {
-    Fraction frac {};
-    std::cout << "Enter a value for the numerator: ";
-    std::cin >> frac.numerator;
-    std::cout << "Enter a value for the denominator: ";
-    std::cin >> frac.denominator;
-    std::cout << '\n';
+struct Monster {
+    MonsterType type {};
+    std::string name {};
+    int health {};
+};
 
-    return frac;
-}
+void printMonster(const Monster& x) {
+    std::string_view typeName;
+    switch (x.type) {
+        case ogre:
+            typeName = "Ogre";
+            break;
+        case dragon:
+            typeName = "Dragon";
+            break;
+        case orc:
+            typeName = "Orc";
+            break;
+        case spider:
+            typeName = "Giant Spider";
+            break;
+        case slime:
+            typeName = "Slime";
+            break;
+        default:
+            typeName = "Unknown";
+            break;
+    };
 
-Fraction multiplyFractions(const Fraction& f1, const Fraction& f2) {
-    return {f1.numerator * f2.numerator, f1.denominator * f2.denominator};
-}
-
-void printFraction(const Fraction& x) {
-    std::cout << "Your fractions multiplied together: " << x.numerator << "/" << x.denominator << '\n';
+    std::cout << "This " << typeName << " is named " << x.name << " and has " << x.health << " health." << '\n';
 }
 
 int main() {
-    Fraction f1 {getFraction()};
-    Fraction f2 {getFraction()};
-    printFraction(multiplyFractions(f1, f2));
-}
+    Monster m1 {ogre, "Torg", 145};
+    Monster m2 {slime, "Blurp", 23};
 
+    printMonster(m1);
+    printMonster(m2);
+
+    return 0;
+}
