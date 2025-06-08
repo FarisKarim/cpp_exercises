@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cmath>
 // struct IntPair {
 // 	int first {};
 // 	int second {};
@@ -184,30 +184,63 @@
 // }
 
 // Delegating constructors
-class Ball
-{
-	private:
-		std::string m_color {"black"};
-		double m_radius {10.0};
-		void printCreated() const {
-			std::cout << "Ball(" << m_color << ", " << m_radius << ")" << '\n';
-		}
+// class Ball
+// {
+// 	private:
+// 		std::string m_color {"black"};
+// 		double m_radius {10.0};
+// 		void printCreated() const {
+// 			std::cout << "Ball(" << m_color << ", " << m_radius << ")" << '\n';
+// 		}
 
-	public:
-		Ball() : Ball{"black", 10.0} {};
-		Ball(std::string_view color) : Ball(color, 10.0) {};
-		Ball(double radius) : Ball("black", radius) {};
-		Ball(std::string_view color, double radius) : m_color {color}, m_radius {radius}
-		{
-			printCreated();
-		};
+// 	public:
+// 		Ball() : Ball{"black", 10.0} {};
+// 		Ball(std::string_view color) : Ball(color, 10.0) {};
+// 		Ball(double radius) : Ball("black", radius) {};
+// 		Ball(std::string_view color, double radius) : m_color {color}, m_radius {radius}
+// 		{
+// 			printCreated();
+// 		};
+// };
+// int main()
+// {
+//     Ball def{};
+//     Ball blue{ "blue" };
+//     Ball twenty{ 20.0 };
+//     Ball blueTwenty{ "blue", 20.0 };
+
+//     return 0;
+// }
+
+class Point2d
+{
+	double m_x{0.0};
+	double m_y{0.0};
+
+public:
+	Point2d(double x, double y) : m_x{x}, m_y{y} {};
+	Point2d() : Point2d(0.0, 0.0) {};
+
+	void print() const
+	{
+		std::cout << "Point2d(" << m_x << ", " << m_y << ")" << "\n";
+	};
+	int distanceTo(const Point2d &otherPoint) const
+	{
+		return std::sqrt((m_x - otherPoint.m_x) * (m_x - otherPoint.m_x) + (m_y - otherPoint.m_y) * (m_y - otherPoint.m_y));
+	};
 };
+
 int main()
 {
-    Ball def{};
-    Ball blue{ "blue" };
-    Ball twenty{ 20.0 };
-    Ball blueTwenty{ "blue", 20.0 };
+	Point2d first{};
+	Point2d second{3.0, 4.0};
 
-    return 0;
+	// Point2d third{ 4.0 }; // should error if uncommented
+
+	first.print();
+	second.print();
+	std::cout << "Distance between two points: " << first.distanceTo(second) << '\n';
+
+	return 0;
 }
